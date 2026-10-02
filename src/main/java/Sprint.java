@@ -1,44 +1,23 @@
 public class Sprint {
-
-    private int numero;
-    private Boolean encerrado = false;
     private Funcionario lider;
+    private String descricao;
 
-    public void adicionarLider(Funcionario funcionario) {
-        lider = funcionario;
-
-        funcionario.promover(
-            new LiderDecorator(funcionario.getCargo())
-        );
+    public Sprint(Funcionario funcionario, String descricao){
+        this.lider = funcionario;
+        this.descricao = descricao;
     }
 
-    public Boolean encerrar() {
-
-        if (encerrado) {
-            return false;
-        }
-
-        if (lider != null) {
-            LiderDecorator liderDecorator =
-                (LiderDecorator) lider.getCargo();
-
-            lider.promover(
-                liderDecorator.getCargoBase()
-            );
-        }
-        encerrado = true;
-        return true;
+    public String getDescricao(){
+        return this.descricao;
     }
 
-    public int getNumero() {
-        return numero;
+    public Funcionario getLider(){
+        return this.lider;
     }
 
-    public Boolean getEncerrado() {
-        return encerrado;
-    }
-
-    public Funcionario getLider() {
-        return lider;
+    @Override 
+    public String toString(){
+        return "Líder: " + this.lider.getNome() + "\n" +
+                "Descrição: " + this.descricao; 
     }
 }

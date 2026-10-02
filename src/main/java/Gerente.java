@@ -1,14 +1,8 @@
-import java.util.List;
-
-public class Gerente implements Cargo {
-
-    @Override
-    public Funcionario promover(Funcionario funcionario) {
-        return funcionario;
-    }
+public class Gerente implements Cargo{
+   String DESCRICAO = "Gerente";
 
     @Override
-    public List<String> getFuncoes() {
-        return List.of("Gerente");
+    public String getDescricao() {
+        return DESCRICAO;
     }
 }

@@ -1,28 +1,43 @@
-import java.util.List;
-
 public class Funcionario {
-
-    private String id;
     private String nome;
     private Cargo cargo;
+    private String cpf;
+    private float salario;
 
-    public String getId() {
-        return id;
+    public Funcionario(String nome, String cpf, float salario){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.cargo = new Desenvolvedor();
+        this.salario = salario;
     }
 
-    public String getNome() {
-        return nome;
+    public void promoverAGerente(){
+        if(!cargo.getDescricao().equals("Desenvolvedor"))
+            throw new IllegalArgumentException("O funcionário já é gerente ou product owner");
+        else this.cargo = new Gerente();
     }
 
-    public Cargo getCargo() {
-        return cargo;
+    public void aumento(float valor){
+        this.salario +=  valor;
     }
 
-    public void promover(Cargo cargo) {
-        this.cargo = cargo;
+    public String getPapel() {
+        return this.cargo.getDescricao();
     }
 
-    public List<String> getFuncoes() {
-        return cargo.getFuncoes();
+    public String getNome(){
+        return this.nome;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome + " - " + this.cargo;
+    }
+
+    public void promoverAPO() {
+       if (this.cargo.getDescricao().equals("Desenvolvedor"))
+         throw new IllegalArgumentException("O funcionário precisa ser gerente para ser promovido a Product Owner.");
+       else 
+        this.cargo = new Gerente();
     }
 }
